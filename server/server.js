@@ -1,7 +1,7 @@
 var express=require('express');
 const app=express();
 const path=require('path')
-const port=5000 || process.env.PORT
+const port=5000 || process.env.PORT || process.env.app_port
 
 var exec = require('child_process').execFile;
 var data=[]
