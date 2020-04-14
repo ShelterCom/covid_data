@@ -47,21 +47,21 @@ state = {
         <p className="App-intro">{this.state.data}</p>
       </div>
 
-        <BrowserRouter>
-          <div className='App'>
-            <Navbar />
-            <Switch>
-              <Route path='/' component={Map} exact />
-              <Route path='/app' component={Aarogya} />
-              <Route path='/state' component={State} />
-              <Route path='/precaution' component={Precaution} />
-              <Route path='/country' component={Country} />
-              <Route path='/news' component={News} />
-              <Route path='/symptoms' component={Symptom} />
-            </Switch>
-            <Footer />
-          </div>
-        </BrowserRouter>
+       //  <BrowserRouter>
+       //    <div className='App'>
+       //      <Navbar />
+       //      <Switch>
+       //        <Route path='/' component={Map} exact />
+       //        <Route path='/app' component={Aarogya} />
+       //        <Route path='/state' component={State} />
+       //        <Route path='/precaution' component={Precaution} />
+       //        <Route path='/country' component={Country} />
+       //        <Route path='/news' component={News} />
+       //        <Route path='/symptoms' component={Symptom} />
+       //      </Switch>
+       //      <Footer />
+       //    </div>
+       // </BrowserRouter>
     );
   }
 
