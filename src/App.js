@@ -10,25 +10,78 @@ import Precaution from './components/precautions'
 import Country from './components/country'
 import News from './components/news'
 import Symptom from './components/symptoms'
+import { Component } from 'react';
+import logo from './logo.svg';
+import './App.css';
 
-function App () {
-  return (
-    <BrowserRouter>
-      <div className='App'>
-        <Navbar />
-        <Switch>
-          <Route path='/' component={Map} exact />
-          <Route path='/app' component={Aarogya} />
-          <Route path='/state' component={State} />
-          <Route path='/precaution' component={Precaution} />
-          <Route path='/country' component={Country} />
-          <Route path='/news' component={News} />
-          <Route path='/symptoms' component={Symptom} />
-        </Switch>
-        <Footer />
+class App extends Component {
+state = {
+    data: null
+  };
+
+  componentDidMount() {
+      // Call our fetch function below once the component mounts
+    this.callBackendAPI()
+      .then(res => this.setState({ data: res.json }))
+      .catch(err => console.log(err));
+  }
+    // Fetches our GET route from the Express server. (Note the route we are fetching matches the GET route from server.js
+  callBackendAPI = async () => {
+    const response = await fetch('/');
+    const body = await response.json();
+
+    if (response.status !== 200) {
+      throw Error(body.message)
+    }
+    return body;
+  };
+
+  render() {
+    return (
+      <div className="App">
+        <header className="App-header">
+          <img src={logo} className="App-logo" alt="logo" />
+          <h1 className="App-title">Welcome to React</h1>
+        </header>
+        // Render the newly fetched data inside of this.state.data
+        <p className="App-intro">{this.state.data}</p>
       </div>
-    </BrowserRouter>
-  )
+
+        <BrowserRouter>
+          <div className='App'>
+            <Navbar />
+            <Switch>
+              <Route path='/' component={Map} exact />
+              <Route path='/app' component={Aarogya} />
+              <Route path='/state' component={State} />
+              <Route path='/precaution' component={Precaution} />
+              <Route path='/country' component={Country} />
+              <Route path='/news' component={News} />
+              <Route path='/symptoms' component={Symptom} />
+            </Switch>
+            <Footer />
+          </div>
+        </BrowserRouter>
+    );
+  }
+
+  // return (
+  //   <BrowserRouter>
+  //     <div className='App'>
+  //       <Navbar />
+  //       <Switch>
+  //         <Route path='/' component={Map} exact />
+  //         <Route path='/app' component={Aarogya} />
+  //         <Route path='/state' component={State} />
+  //         <Route path='/precaution' component={Precaution} />
+  //         <Route path='/country' component={Country} />
+  //         <Route path='/news' component={News} />
+  //         <Route path='/symptoms' component={Symptom} />
+  //       </Switch>
+  //       <Footer />
+  //     </div>
+  //   </BrowserRouter>
+  // )
 }
 
 export default App
