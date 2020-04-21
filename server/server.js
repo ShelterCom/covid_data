@@ -3,6 +3,10 @@ const app=express();
 const path=require('path')
 const port=process.env.PORT || 5000
 
+const cors=require('cors');
+app.use(cors());
+app.options('*', cors());
+
 const sc=require('./scraper.js')
 
 var data=[]
